@@ -1,4 +1,4 @@
-# ioBroker Battery BMS Monitor 电池监控适配器 (支持 PACE, JK, TDT BMS)
+# ioBroker Gobel BMS Monitor 电池监控适配器 (支持 PACE, JK, TDT BMS)
 
 [English](../../README.md) | [Deutsch](../de/README.md)
 
@@ -18,7 +18,7 @@
 
 ### 自动设置 (Windows)
 * 如果你的 Windows 电脑连接了互联网，**适配器将在启动时自动下载并配置带有 `pyserial` 的便携式 Python 3.11 环境**。你不需要手动安装任何内容！
-* 下载的环境将持久缓存在 `iobroker-data/battery-bms-monitor-python/` 目录下，且在适配器升级时不会丢失。
+* 下载的环境将持久缓存在 `iobroker-data/gobel-bms-monitor-python/` 目录下，且在适配器升级时不会丢失。
 
 ### 手动设置 (Linux / Docker / Windows 离线环境)
 * **Linux (Debian/Ubuntu/Raspberry Pi OS)**：
@@ -36,7 +36,7 @@
 在开发或首发阶段，你可以直接从 GitHub 或本地目录安装：
 * 在你的 ioBroker 根目录下（例如 Linux 上的 `/opt/iobroker`）：
   ```bash
-  npm install https://github.com/fancyui/ioBroker.battery-bms-monitor
+  npm install https://github.com/fancyui/ioBroker.gobel-bms-monitor
   ```
 * 或者通过 ioBroker 管理面板（点击 GitHub 图标/输入自定义 URL）进行安装。
 

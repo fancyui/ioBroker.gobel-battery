@@ -4,14 +4,14 @@ const path = require('path');
 const fs = require('fs');
 const https = require('https');
 
-class BatteryBmsMonitor extends utils.Adapter {
+class GobelBmsMonitor extends utils.Adapter {
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
      */
     constructor(options) {
         super({
             ...options,
-            name: 'battery-bms-monitor',
+            name: 'gobel-bms-monitor',
         });
         this.on('ready', this.onReady.bind(this));
         this.on('unload', this.onUnload.bind(this));
@@ -41,7 +41,7 @@ class BatteryBmsMonitor extends utils.Adapter {
         const grandParentDir = path.dirname(parentDir); // e.g. <ioBroker-root>
         const ioBrokerDataDir = path.join(grandParentDir, 'iobroker-data');
         if (fs.existsSync(ioBrokerDataDir)) {
-            return path.join(ioBrokerDataDir, 'battery-bms-monitor-python');
+            return path.join(ioBrokerDataDir, 'gobel-bms-monitor-python');
         }
         return path.join(__dirname, 'python-embed');
     }
@@ -872,8 +872,8 @@ if (require.main !== module) {
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
      */
-    module.exports = (options) => new BatteryBmsMonitor(options);
+    module.exports = (options) => new GobelBmsMonitor(options);
 } else {
     // otherwise start the instance directly
-    new BatteryBmsMonitor();
+    new GobelBmsMonitor();
 }

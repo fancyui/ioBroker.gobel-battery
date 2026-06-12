@@ -1,4 +1,4 @@
-# ioBroker Battery BMS Monitor Adapter (PACE, JK, TDT BMS)
+# ioBroker Gobel BMS Monitor Adapter (PACE, JK, TDT BMS)
 
 [English](../../README.md) | [简体中文](../zh-cn/README.md)
 
@@ -18,7 +18,7 @@ Dieser Adapter führt im Hintergrund einen leichtgewichtigen Python 3-Daemon aus
 
 ### Automatische Einrichtung (Windows)
 * Wenn Ihr Windows-Rechner mit dem Internet verbunden ist, **lädt der Adapter beim Start automatisch eine portable Python 3.11-Umgebung mit `pyserial` herunter und richtet sie ein**. Sie müssen nichts manuell installieren!
-* Die heruntergeladene Umgebung wird dauerhaft unter `iobroker-data/battery-bms-monitor-python/` zwischengespeichert und bleibt bei Adapter-Updates erhalten.
+* Die heruntergeladene Umgebung wird dauerhaft unter `iobroker-data/gobel-bms-monitor-python/` zwischengespeichert und bleibt bei Adapter-Updates erhalten.
 
 ### Manuelle Einrichtung (Linux / Docker / Windows Offline)
 * **Linux (Debian/Ubuntu/Raspberry Pi OS)**:
@@ -36,7 +36,7 @@ Dieser Adapter führt im Hintergrund einen leichtgewichtigen Python 3-Daemon aus
 Installieren Sie den Adapter während der Entwicklungs- oder Erstveröffentlichungsphase direkt über GitHub oder ein lokales Verzeichnis:
 * In Ihrem ioBroker-Hauptordner (z. B. `/opt/iobroker` unter Linux):
   ```bash
-  npm install https://github.com/fancyui/ioBroker.battery-bms-monitor
+  npm install https://github.com/fancyui/ioBroker.gobel-bms-monitor
   ```
 * Oder fügen Sie ihn über das ioBroker-Admin-Panel hinzu (GitHub-Symbol/Benutzerdefinierte URL).
 
