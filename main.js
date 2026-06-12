@@ -33,6 +33,20 @@ class GobelBattery extends utils.Adapter {
     }
 
     /**
+     * Gets the persistent directory for the portable Python environment.
+     * @returns {string}
+     */
+    getPersistentPythonDir() {
+        const parentDir = path.dirname(__dirname); // e.g. <ioBroker-root>/node_modules
+        const grandParentDir = path.dirname(parentDir); // e.g. <ioBroker-root>
+        const ioBrokerDataDir = path.join(grandParentDir, 'iobroker-data');
+        if (fs.existsSync(ioBrokerDataDir)) {
+            return path.join(ioBrokerDataDir, 'gobel-battery-python');
+        }
+        return path.join(__dirname, 'python-embed');
+    }
+
+    /**
      * Resolves the python executable path using platform defaults, Registry checks, and folder scans.
      * @returns {Promise<string>}
      */
@@ -58,8 +72,9 @@ class GobelBattery extends utils.Adapter {
 
         // If on Windows, check registry, common folders, or downloaded embeddable Python
         if (process.platform === 'win32') {
-            // First check if already downloaded in the adapter's directory
-            const embedExe = path.join(__dirname, 'python-embed', 'python.exe');
+            // First check if already downloaded in the persistent directory
+            const persistentPythonDir = this.getPersistentPythonDir();
+            const embedExe = path.join(persistentPythonDir, 'python.exe');
             if (fs.existsSync(embedExe)) {
                 return embedExe;
             }
@@ -204,7 +219,7 @@ class GobelBattery extends utils.Adapter {
      * @returns {Promise<string>} Path to the downloaded python.exe
      */
     async setupPortablePython() {
-        const pythonDir = path.join(__dirname, 'python-embed');
+        const pythonDir = this.getPersistentPythonDir();
         const pythonExe = path.join(pythonDir, 'python.exe');
         
         if (fs.existsSync(pythonExe)) {
@@ -254,9 +269,9 @@ class GobelBattery extends utils.Adapter {
             const pyserialExtractDir = path.join(tempDir, 'pyserial-extract');
             await this.unzipFile(pyserialZip, pyserialExtractDir);
 
-            // 5. Copy the serial folder to lib/serial
+            // 5. Copy the serial folder to pythonDir/serial
             const serialSrc = path.join(pyserialExtractDir, 'serial');
-            const serialDest = path.join(__dirname, 'lib', 'serial');
+            const serialDest = path.join(pythonDir, 'serial');
             if (fs.existsSync(serialSrc)) {
                 if (fs.existsSync(serialDest)) {
                     fs.rmSync(serialDest, { recursive: true, force: true });
